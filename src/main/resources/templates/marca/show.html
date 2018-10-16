@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+<title>Mostrar Marca</title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<h1>Mostrar Marca</h1>
+		<hr />
+		<div class="form-group"> 
+			<label for="id">Id: </label>  
+			<span th:text="${marca.id}"></span> 
+		</div> 
+		<div class="form-group"> 
+			<label for="nome">Nome: </label>  
+			<span th:text="${marca.nome}"></span> 
+		</div> 
+		
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Nome</th> 
+					<th>Ano</th> 
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="modelo : ${marca.modelos}">
+					<td th:text="${modelo.nome}"></td> 
+					<td th:text="${modelo.ano}"></td>
+				</tr>
+			</tbody>
+		</table>
+		
+		<a th:href="@{/marcas}" class="btn btn-primary">Voltar</a>
+		<a th:href="@{/marcas/{id}/edit(id = ${marca.id})}" class="btn btn-info">Editar</a>
+		<a th:href="${marca.id +'/delete'}" class="btn btn-danger">Apagar</a>
+		
+	</div>
+</body>
+</html>

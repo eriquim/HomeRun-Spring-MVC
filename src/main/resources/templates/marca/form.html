@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+<title>New Marca</title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<h1 th:if="${marca.id == null}">Nova Marca</h1>
+		<h1 th:if="${marca.id != null}">Editar Marca</h1>
+		<hr />
+		<form th:action="@{/marcas}" th:method="@{${marca.id == null} ? 'post' : 'put'}"
+			th:object="${marca}">
+			<input type="hidden" th:field="*{id}" /> 
+			
+				<div class="form-group"> 
+					<label for="nome">Nome</label>  
+					<input id="nome" name="nome" type="text" class="form-control" th:field="*{nome}" />  
+				</div> 
+				<div class="form-group"> 
+					<label for="sigla">Sigla</label>  
+					<input id="sigla" name="sigla" type="text" class="form-control" th:field="*{sigla}" />  
+				</div> 
+
+			<button type="submit" class="btn btn-success">Salvar</button>
+			<a th:href="@{/marcas}" class="btn btn-default">Voltar</a>
+		</form>
+	</div>
+</body>
+</html>

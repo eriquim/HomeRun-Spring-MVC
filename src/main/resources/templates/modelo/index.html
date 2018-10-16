@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorator="layout">
+<head>
+ 	<meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Lista dos Modelos</title>
+</head>
+<body>
+
+	<div layout:fragment="content">
+		<h1>Lista dos Modelos</h1>
+		<hr />
+		<a th:href="@{/modelos/new}" class="btn btn-success">Novo Modelo</a><br/><br/>
+		
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Nome</th> 
+					<th>Ano</th> 
+					<th>Marca</th>
+					<th>Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="modelo : ${listModelos}">
+					<td th:text="${modelo.nome}"></td> 
+					<td th:text="${modelo.ano}"></td> 
+					<td th:text="${modelo.marca.nome}"></td>  
+					<td>
+							<a th:href="@{/modelos/{id}(id = ${modelo.id})}" class="btn btn-primary" >Mostrar</a> 
+					 		<a th:href="@{/modelos/{id}/edit(id = ${modelo.id})}" class="btn btn-info">Editar</a> 
+					 		<a th:href="${'modelos/'+ modelo.id +'/delete'}" class="btn btn-danger">Apagar</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	  </div>
+	  
+	  
+</body>
+</html>
